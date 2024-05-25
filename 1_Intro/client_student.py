@@ -9,13 +9,15 @@ def searchWeb(html):
     # 查询第一个<tr>...</tr>行
     m = re.search(r"<tr>", html)
     n = re.search(r"</tr>", html)
-    if m != None and n != None:
+    print(m, n)
+    if m is not None and n is not None:
         # 跳过第一行的标题
         html = html[n.end():]
     # 查询第二行开始的数据部分
     m = re.search(r"<tr>", html)
     n = re.search(r"</tr>", html)
-    while (m != None and n != None):
+    print(m, n)
+    while m is not None and n is not None:
         row = []
         # start是<tr>的结束位置
         start = m.end()
@@ -23,13 +25,15 @@ def searchWeb(html):
         end = n.start()
         # t是<tr>...</tr>包含的字符串
         t = html[start:end]
+        print(t)
         # html[n.end():]是剩余的html
         html = html[n.end():]
+        print(html)
         # 查询第一组<td>...</td>
         a = re.search(r"<td>", t)
         b = re.search(r"</td>", t)
         i = 0
-        while (a != None and b != None):
+        while a is not None and b is not None:
             start = a.end()
             end = b.start()
             # 找到一组<td>...</td>的数据
@@ -114,6 +118,7 @@ try:
     resp = urllib.request.urlopen(url)
     data = resp.read()
     html = data.decode("utf-8")
+    # print(html)
     # 在html中查找学生信息
     rows = searchWeb(html)
     # 显示查找的信息
