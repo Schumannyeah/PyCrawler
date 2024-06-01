@@ -1,5 +1,7 @@
 import flask
 import os
+import random
+import time
 
 app=flask.Flask(__name__)
 def getFile(fileName):
@@ -8,6 +10,8 @@ def getFile(fileName):
         fobj=open(fileName,"rb")
         data=fobj.read()
         fobj.close()
+        # 随机等待1-10秒
+        time.sleep(random.randint(1,2))
     return data
 
 @app.route("/")
