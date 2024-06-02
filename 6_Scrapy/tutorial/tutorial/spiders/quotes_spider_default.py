@@ -1,7 +1,7 @@
 import scrapy
 
 
-class QuotesSpider(scrapy.Spider):
+class QuotesSpiderDefault(scrapy.Spider):
     name = "quotesDefault"
     start_urls = [
         "https://quotes.toscrape.com/page/1/",

@@ -1,7 +1,7 @@
 import scrapy
 
 
-class QuotesSpider(scrapy.Spider):
+class QuotesSpiderDefaultTwo(scrapy.Spider):
     name = "quotesDefaultTwo"
     start_urls = [
         "https://quotes.toscrape.com/page/1/",
@@ -21,3 +21,6 @@ class QuotesSpider(scrapy.Spider):
             # how urljoin works
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page, callback=self.parse)
+            # Schumann
+            # An alternative shortcut  for above without calling urljoin
+            # # yield response.follow(next_page, callback=self.parse)
