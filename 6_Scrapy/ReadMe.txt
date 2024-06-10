@@ -98,6 +98,12 @@ When appending to a file, consider using a different serialization format, such 
 scrapy crawl quotes -o quotes.jsonl
 The JSON Lines format is useful because it’s stream-like, you can easily append new records to it.
 
-scrapy crawl quotes -O quotes-humor.json -a tag=humor
+scrapy crawl quotes -o quotes-humor.json -a tag=humor
 You can provide command line arguments to your spiders by using the -a option when running them:
 These arguments are passed to the Spider’s __init__ method and become spider attributes by default.
+
+
+Example:
+As defined in "scrape_cssc_info.py", if we first run "scrapy crawl cssc-info-xpath -o cssc-company.json",
+then run "load_json_into_db.py" to insert the company and website into sql database.
+

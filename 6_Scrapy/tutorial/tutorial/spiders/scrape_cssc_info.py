@@ -10,8 +10,13 @@ class ToScrapeSpiderXPath(scrapy.Spider):
     ]
 
     def parse(self, response):
-        for quote in response.xpath('//ul[@class="web_tab_list"]'):
+        # for quote in response.xpath('//ul[@class="web_tab_list"]'):
+        #     yield {
+        #         'text': quote.xpath('./li/a/text()').extract(),
+        #         'website': quote.xpath('./li/a/@href').extract()
+        #     }
+        for quote in response.xpath('//ul[@class="web_tab_list"]/li/a'):
             yield {
-                'text': quote.xpath('./li/a/text()').extract(),
-                'website': quote.xpath('./li/a/@href').extract()
+                'company': quote.xpath('text()').extract(),
+                'website': quote.xpath('@href').extract()
             }
